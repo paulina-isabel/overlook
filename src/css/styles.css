@@ -14,7 +14,7 @@ h1 {
   text-shadow: black;
 }
 
-.user-bookings {
+.customer-bookings {
   width: 80%; /* Adjust the width as desired */
   margin: 0 auto; /* Centers the section horizontally */
   position: relative;

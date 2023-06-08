@@ -19,8 +19,6 @@ const getCustomer = (data, id) => {
   return customer;
 };
 
-
-// get all current & past bookings
 // get booking by id
 const getBookings = (data, bookingId) => {
   if(!data) {
@@ -39,7 +37,21 @@ const getBookings = (data, bookingId) => {
   return bookings
 }
 
+// get all current & past bookings
+const getCustomerBookings = (bookingsData, customerId) => {
+  //  info i need to get this going
+  // bookings data,
+  // looking through bookings data,
+  // filter by customer id, 
+  // show all the ones that match customer id
+  // dont show the others
+  return bookingsData.filter((booking) => {
+    return booking.userID === customerId
+  })
+}
+
 export {
   getCustomer,
-  getBookings
+  getBookings,
+  getCustomerBookings
 }

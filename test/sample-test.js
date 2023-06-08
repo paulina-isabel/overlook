@@ -1,7 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import { getBookings, getCustomer } from '../src/customers.js';
+import { getCustomer, getBookings, getCustomerBookings } from '../src/customers.js';
 import { sampleCustomers, sampleBookings } from '../src/sampleData.js';
 
 describe('See if the tests are running', function() {
