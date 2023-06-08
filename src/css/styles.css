@@ -1,3 +1,37 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background-image: url("../images/hotel-room.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  font-size: 80px;
+  text-shadow: black;
+}
+
+.user-bookings {
+  width: 80%; /* Adjust the width as desired */
+  margin: 0 auto; /* Centers the section horizontally */
+  position: relative;
+  background-color: #C5C3C6;
+  border-radius: 20px; 
+  padding: 10px 15px;
+  width: 620px;
+  height: 370px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
+}
+
+.bookings-icons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  width: 50px;
+  margin: 8px;
 }
