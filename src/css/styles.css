@@ -18,7 +18,7 @@ h1 {
   width: 80%;
   margin: 0 auto; /* Centers the section horizontally */
   position: relative;
-  background-color: #C5C3C6;
+  /* background-color: #C5C3C6; */
   border-radius: 20px; 
   padding: 10px 15px;
   width: 40vw;
@@ -48,7 +48,18 @@ h1 {
   /* overflow-x: hidden; */
 }
 
-.single-booking {
+.available-rooms {
+  /* text-align: center;
+  position: absolute;
+  top: 10vh;
+  height: auto;
+  max-height: 30vh;
+  width: 97%; */
+  overflow: scroll;
+  /* overflow-x: hidden; */
+}
+
+.single-booking, .single-available-room {
   margin: 8px;
   width: 90%;
   border-radius: 20px; 
@@ -66,12 +77,13 @@ h1 {
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   position: absolute;
   bottom: 0;
-  width: 250px;
-  height: 100%;
+  width: 20vw;
+  height: 100vh;
   left: 0;
+  padding: 15px;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
 }
@@ -80,8 +92,16 @@ h1 {
   text-align: center;
 }
 
-.make-booking-title {
-  font-size: 30px;
+.desired-date-title {
+  font-size: 20px;
 }
+
+.make-booking-title {
+  font-size: 35px;
+}
+
+/* .single-available.room {
+
+} */
 
 @import '~flatpickr/dist/flatpickr'
