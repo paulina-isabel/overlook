@@ -26,8 +26,13 @@ window.addEventListener('load', function() {
     console.log('current customer bookings', currentCustomerBookings)
     showCustomerBookings();
     flatpickr('#date', {
-      dateFormat: "Y-m-d",
+      dateFormat: "Y/m/d",
       minDate: "today",
+      mode: 'single',
+      onChange: function(selectedDate, dateStr) {
+        console.log('date', selectedDate)
+        console.log("Selected date:", dateStr);
+      }
     });
   });
 });

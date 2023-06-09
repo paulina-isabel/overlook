@@ -76,6 +76,10 @@ h1 {
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
 }
 
+#date {
+  text-align: center;
+}
+
 .make-booking-title {
   font-size: 30px;
 }
