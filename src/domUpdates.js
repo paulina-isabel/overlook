@@ -5,7 +5,7 @@
 import { getData, getAllData } from '../apiCalls';
 import { getCustomerBookings } from './customers';
 
-const bookingsContainer = document.querySelector('.bookings-container')
+const bookingsContainer = document.querySelector('.bookings')
 
 let roomsData;
 let customersData;
