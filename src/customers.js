@@ -39,19 +39,46 @@ const getBookings = (data, bookingId) => {
 
 // get all current & past bookings
 const getCustomerBookings = (bookingsData, customerId) => {
-  //  info i need to get this going
-  // bookings data,
-  // looking through bookings data,
-  // filter by customer id, 
-  // show all the ones that match customer id
-  // dont show the others
-  return bookingsData.filter((booking) => {
+
+  if(!bookingsData) {
+    return 'No bookings found'
+  };
+
+  const myBookings = bookingsData.filter((booking) => {
     return booking.userID === customerId
   })
+
+  if(!myBookings.length) {
+    return 'No bookings found for you'
+  };
+
+  return myBookings
+}
+
+const getRandomItem = (data) => {
+  if(!data) {
+    return `data not found`;
+  }
+
+  const indexPosition = Math.floor(Math.random() * data.length);
+
+  return data[indexPosition];
+};
+
+const updateUser = () => {
+  if (!user) {
+    user = getRandomItem(usersData)
+  } else {
+    const searchById = user.id;
+    user = usersData[searchById - 1];
+    user.recipesToCook = getUserRecipes(user, recipeData)
+  }
 }
 
 export {
   getCustomer,
   getBookings,
-  getCustomerBookings
+  getCustomerBookings,
+  getRandomItem,
+  updateUser
 }
