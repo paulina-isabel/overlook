@@ -55,30 +55,8 @@ const getCustomerBookings = (bookingsData, customerId) => {
   return myBookings
 }
 
-const getRandomItem = (data) => {
-  if(!data) {
-    return `data not found`;
-  }
-
-  const indexPosition = Math.floor(Math.random() * data.length);
-
-  return data[indexPosition];
-};
-
-const updateUser = () => {
-  if (!user) {
-    user = getRandomItem(usersData)
-  } else {
-    const searchById = user.id;
-    user = usersData[searchById - 1];
-    user.recipesToCook = getUserRecipes(user, recipeData)
-  }
-}
-
 export {
   getCustomer,
   getBookings,
   getCustomerBookings,
-  getRandomItem,
-  updateUser
 }

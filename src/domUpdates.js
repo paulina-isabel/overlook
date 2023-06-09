@@ -22,17 +22,13 @@ let currentCustomerBookings;
 window.addEventListener('load', function() {
   setData();
   getData('bookings').then(result => {
-    customerBookings = result.bookings
-    currentCustomerBookings = getCustomerBookings(customerBookings, 9)
-    console.log('cust bookz', customerBookings)
-    console.log('user 9 bookz', currentCustomerBookings)
-    showCustomerBookings()
-    // showCustomerBookings(customerBookings);
-  })
-  
+    customerBookings = result.bookings;
+    currentCustomerBookings = getCustomerBookings(customerBookings, 9);
+    console.log('cust bookz', customerBookings);
+    console.log('user 9 bookz', currentCustomerBookings);
+    showCustomerBookings();
+  });
 });
-
-
 
 const showCustomerBookings = () => {
   bookingsContainer.innerHTML = ""
@@ -41,7 +37,6 @@ const showCustomerBookings = () => {
       <div class="single-booking">Date: ${booking.date} <br> Room: ${booking.roomNumber}
       </div>`
   });
-
 };
 
 const setData = () => {
@@ -57,18 +52,3 @@ export {
   setData,
   showCustomerBookings
 };
-
-// window.addEventListener('load', function() {
-//   showCustomerBookings();
-// });
-
-// const showCustomerBookings = () => {
-//   bookingsContainer.innerHTML = ""
-//   let customerBookings = getCustomerBookings(sampleBookings, 9)
-//   customerBookings.forEach((booking) => {
-//     return bookingsContainer.innerHTML += `
-//       <div>Date: ${booking.date} <br> Room: ${booking.roomNumber}
-//       </div>`
-//   });
-
-// };
