@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>O V E R L O O K</title>
+
+  <!-- *********************FP*********************** -->
+
 </head>
 <body>
   <h1>Overlook Hotel</h1>
@@ -17,7 +19,18 @@
         Book a room to see your booking here!
         <!-- bookings go here -->
     </div>
-</section>
+  </section>
+  <aside id="date-picker">
+    <form>
+      <label for="date">Choose your booking date:</label><br>
+      <input type="text" id="date" name="date"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </aside>
+  <!-- *********************FP************************ -->
+  <!-- <input type="text" id="date-picker"> -->
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
   <!-- <img src="./images/hotel-room.png" alt=""> -->
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>

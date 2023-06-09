@@ -4,6 +4,7 @@
 
 import { getData, getAllData } from '../apiCalls';
 import { getCustomerBookings } from './customers';
+import flatpickr from 'flatpickr';
 
 const bookingsContainer = document.querySelector('.bookings')
 
@@ -17,22 +18,23 @@ let currentCustomerBookings;
 // ============================  FUNCTIONS  ============================
 // =====================================================================
 
-
-
 window.addEventListener('load', function() {
   setData();
   getData('bookings').then(result => {
     customerBookings = result.bookings;
     currentCustomerBookings = getCustomerBookings(customerBookings, 9);
-    console.log(currentCustomerBookings)
+    console.log('current customer bookings', currentCustomerBookings)
     showCustomerBookings();
+    flatpickr('#date', {
+      dateFormat: "Y-m-d",
+      minDate: "today",
+    });
   });
 });
 
 const showCustomerBookings = () => {
-  let totalSpent = getTotalSpent()
+  let totalSpent = getTotalSpent();
   bookingsContainer.innerHTML = "";
-  
   currentCustomerBookings.forEach((booking) => {
     bookingsContainer.innerHTML += `
       <div class="single-booking">Date: ${booking.date} <br> Room: ${booking.roomNumber}

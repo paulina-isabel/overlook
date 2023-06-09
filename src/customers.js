@@ -55,8 +55,27 @@ const getCustomerBookings = (bookingsData, customerId) => {
   return myBookings
 }
 
+const getAvailableRooms = (date, bookingsData, roomsData) => {
+  let unavailableRooms = bookingsData.reduce((unavailRooms, booking) => { if (booking.date === date) {
+    unavailRooms.push(booking.roomNumber)
+  }
+    return unavailRooms
+  }, [])
+
+  let availableRooms = roomsData.filter((room) => {
+    return !unavailableRooms.includes(room.number) 
+  })
+
+  if(!availableRooms.length) {
+    return 'No rooms are available on the selected date, please pick another date.'
+  }
+
+ return availableRooms
+}
+
 export {
   getCustomer,
   getBookings,
   getCustomerBookings,
+  getAvailableRooms
 }

@@ -1,8 +1,8 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import { getCustomer, getBookings, getCustomerBookings } from '../src/customers.js';
-import { sampleCustomers, sampleBookings } from '../src/sampleData.js';
+import { getCustomer, getBookings, getCustomerBookings, getAvailableRooms } from '../src/customers.js';
+import { sampleCustomers, sampleBookings, sampleRooms } from '../src/sampleData.js';
 
 describe('See if the tests are running', function() {
   it('should return true', function() {
@@ -131,5 +131,62 @@ beforeEach(() => {
 
   it('should return an error message if no booking is found', () => {
     expect(getMyBookings4).to.equal('No bookings found for you')
+  })
+});
+
+describe ('find rooms available for booking', () => {
+
+  let availableRooms1, availableRooms2;
+
+beforeEach(() => {
+  availableRooms1 = getAvailableRooms('2022/02/16', sampleBookings, sampleRooms)
+  });
+  availableRooms2 = getAvailableRooms('2022/01/17', sampleBookings, sampleRooms)
+
+  it('should be a function', () => {
+    expect(getAvailableRooms).to.be.a('function')
+  });
+  
+  it('should only show rooms which are not booked on the given date', () => {
+    expect(availableRooms1).to.deep.equal(
+      [
+        {
+          number: 2,
+          roomType: 'suite',
+          bidet: false,
+          bedSize: 'full',
+          numBeds: 2,
+          costPerNight: 477.38
+        },
+        {
+          number: 3,
+          roomType: 'single room',
+          bidet: false,
+          bedSize: 'king',
+          numBeds: 1,
+          costPerNight: 491.14
+        },
+        {
+          number: 4,
+          roomType: 'single room',
+          bidet: false,
+          bedSize: 'queen',
+          numBeds: 1,
+          costPerNight: 429.44
+        },
+        {
+          number: 5,
+          roomType: 'single room',
+          bidet: true,
+          bedSize: 'queen',
+          numBeds: 2,
+          costPerNight: 340.17
+        }
+      ]
+    );
+  });
+
+  it('should return a message if no rooms are available', () => {
+    expect(availableRooms2).to.equal('No rooms are available on the selected date, please pick another date.')
   })
 });
