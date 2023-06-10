@@ -77,7 +77,11 @@ const filterRoomByType = (roomsData, type) => {
   let filteredRooms = roomsData.filter((room) => {
     return room.roomType === type
   })
-  console.log(filteredRooms)
+  
+  if (!filteredRooms.length) {
+    return `Sorry, there are no avaiable rooms in the ${type} category :(`
+  }
+
   return filteredRooms
 }
 

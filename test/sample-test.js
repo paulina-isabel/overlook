@@ -192,12 +192,13 @@ beforeEach(() => {
 });
 
 describe ('filter rooms by type', () => {
-  let roomsByCategory1, roomsByCategory2;
+  let roomsByCategory1, roomsByCategory2, roomsByCategory3;
 
   beforeEach(() => {
     roomsByCategory1 = filterRoomByType(sampleRooms, 'suite')
     });
-    roomsByCategory2 = filterRoomByType(sampleRooms, 'single room')
+    roomsByCategory2 = filterRoomByType(sampleRooms, 'single room');
+    roomsByCategory3 = filterRoomByType(sampleRooms, 'ugly')
   
   it('should be a function', () => {
     expect(filterRoomByType).to.be.a('function')
@@ -205,48 +206,51 @@ describe ('filter rooms by type', () => {
 
   it('should get all rooms in a given category', () => {
     expect(roomsByCategory1).to.deep.equal(
-    [
-      {
-        "number": 2,
-        "roomType": "suite",
-        "bidet": false,
-        "bedSize": "full",
-        "numBeds": 2,
-        "costPerNight": 477.38
-      }
-    ]
-  )
-  })
+      [
+        {
+          "number": 2,
+          "roomType": "suite",
+          "bidet": false,
+          "bedSize": "full",
+          "numBeds": 2,
+          "costPerNight": 477.38
+        }
+      ]
+    );
+  });
 
   it('should get all rooms in a different given category', () => {
     expect(roomsByCategory2).to.deep.equal(
-    [
-      {
-        "number": 3,
-        "roomType": "single room",
-        "bidet": false,
-        "bedSize": "king",
-        "numBeds": 1,
-        "costPerNight": 491.14
-      },
-      {
-        "number": 4,
-        "roomType": "single room",
-        "bidet": false,
-        "bedSize": "queen",
-        "numBeds": 1,
-        "costPerNight": 429.44
-      },
-      {
-        "number": 5,
-        "roomType": "single room",
-        "bidet": true,
-        "bedSize": "queen",
-        "numBeds": 2,
-        "costPerNight": 340.17
-      }
-    ]
-  )
-  })
+      [
+        {
+          "number": 3,
+          "roomType": "single room",
+          "bidet": false,
+          "bedSize": "king",
+          "numBeds": 1,
+          "costPerNight": 491.14
+        },
+        {
+          "number": 4,
+          "roomType": "single room",
+          "bidet": false,
+          "bedSize": "queen",
+          "numBeds": 1,
+          "costPerNight": 429.44
+        },
+        {
+          "number": 5,
+          "roomType": "single room",
+          "bidet": true,
+          "bedSize": "queen",
+          "numBeds": 2,
+          "costPerNight": 340.17
+        }
+      ]
+    );
+  });
 
+  it('should return an apology if there are no avaiable rooms', () => {
+    expect(roomsByCategory3).to.equal('Sorry, there are no avaiable rooms in the ugly category :(');
+  });
 });
