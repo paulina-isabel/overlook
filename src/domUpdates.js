@@ -13,7 +13,6 @@ const dropdownSection = document.querySelector('.dropdown-filter');
 const dropDownSect = document.querySelector('.filter-buttons');
 const suiteButton = document.querySelector('.suite');
 const bookRoomButton = document.querySelectorAll('.book-room-button');
-const sar = document.querySelector('.single-available-room')
 
 let roomsData;
 let customersData;
@@ -137,6 +136,5 @@ export {
   userSelectedDate,
   bookingsData,
   bookRoomButton,
-  sar,
   availableRoomsContainer
 };
