@@ -13,6 +13,7 @@ const dropdownSection = document.querySelector('.dropdown-filter');
 const dropDownSect = document.querySelector('.filter-buttons');
 const suiteButton = document.querySelector('.suite');
 const bookRoomButton = document.querySelectorAll('.book-room-button');
+const welcomeMessage = document.querySelector('.user-welcome-message');
 
 let roomsData;
 let customersData;
@@ -22,6 +23,7 @@ let currentCustomerBookings;
 let roomTypes;
 let availableRoomsList;
 let userSelectedDate;
+let currentCustomer;
 
 // =====================================================================
 // ============================  FUNCTIONS  ============================
@@ -31,10 +33,7 @@ window.addEventListener('load', function() {
   setData();
   getData('bookings').then(result => {
     customerBookings = result.bookings;
-    // upon login, capture customer id to pass in as argument in getCustomerBookings below:
     console.log('bookings data', roomsData)
-    currentCustomerBookings = getCustomerBookings(customerBookings, 9);
-    // console.log('current customer bookings', currentCustomerBookings)
     showCustomerBookings();
     flatpickr('#date', {
       dateFormat: "Y/m/d",
@@ -50,9 +49,23 @@ window.addEventListener('load', function() {
   });
 });
 
+const getRandomUser = () => {
+  let randomUserIndex = Math.floor(Math.random() * customersData.length)
+  console.log('random user index', randomUserIndex)
+  currentCustomer = customersData[randomUserIndex]
+  console.log('current cust', currentCustomer.id)
+}
 
+const showWelcomeMessage = () => {
+  console.log('customer data', customersData)
+  getRandomUser()
+  welcomeMessage.innerText = `Welcome, ${currentCustomer.name}`
+}
 
 const showCustomerBookings = () => {
+  showWelcomeMessage()
+   // upon login, capture customer id to pass in as argument in getCustomerBookings below:
+  currentCustomerBookings = getCustomerBookings(customerBookings, currentCustomer.id);
   // console.log('rooms data', roomsData)
   let totalSpent = getTotalSpent();
   bookingsContainer.innerHTML = "";
@@ -136,5 +149,6 @@ export {
   userSelectedDate,
   bookingsData,
   bookRoomButton,
-  availableRoomsContainer
+  availableRoomsContainer,
+  currentCustomer
 };
