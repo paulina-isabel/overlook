@@ -1,7 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import { getCustomer, getBookings, getCustomerBookings, getAvailableRooms } from '../src/customers.js';
+import { getCustomer, getBookings, getCustomerBookings, getAvailableRooms, filterRoomByType } from '../src/customers.js';
 import { sampleCustomers, sampleBookings, sampleRooms } from '../src/sampleData.js';
 
 describe('See if the tests are running', function() {
@@ -189,4 +189,64 @@ beforeEach(() => {
   it('should return a message if no rooms are available', () => {
     expect(availableRooms2).to.equal('No rooms are available on the selected date, please pick another date.')
   })
+});
+
+describe ('filter rooms by type', () => {
+  let roomsByCategory1, roomsByCategory2;
+
+  beforeEach(() => {
+    roomsByCategory1 = filterRoomByType(sampleRooms, 'suite')
+    });
+    roomsByCategory2 = filterRoomByType(sampleRooms, 'single room')
+  
+  it('should be a function', () => {
+    expect(filterRoomByType).to.be.a('function')
+  });
+
+  it('should get all rooms in a given category', () => {
+    expect(roomsByCategory1).to.deep.equal(
+    [
+      {
+        "number": 2,
+        "roomType": "suite",
+        "bidet": false,
+        "bedSize": "full",
+        "numBeds": 2,
+        "costPerNight": 477.38
+      }
+    ]
+  )
+  })
+
+  it('should get all rooms in a different given category', () => {
+    expect(roomsByCategory2).to.deep.equal(
+    [
+      {
+        "number": 3,
+        "roomType": "single room",
+        "bidet": false,
+        "bedSize": "king",
+        "numBeds": 1,
+        "costPerNight": 491.14
+      },
+      {
+        "number": 4,
+        "roomType": "single room",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 429.44
+      },
+      {
+        "number": 5,
+        "roomType": "single room",
+        "bidet": true,
+        "bedSize": "queen",
+        "numBeds": 2,
+        "costPerNight": 340.17
+      }
+    ]
+  )
+  })
+
 });

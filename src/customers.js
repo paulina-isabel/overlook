@@ -73,9 +73,18 @@ const getAvailableRooms = (date, bookingsData, roomsData) => {
  return availableRooms
 }
 
+const filterRoomByType = (roomsData, type) => {
+  let filteredRooms = roomsData.filter((room) => {
+    return room.roomType === type
+  })
+  console.log(filteredRooms)
+  return filteredRooms
+}
+
 export {
   getCustomer,
   getBookings,
   getCustomerBookings,
-  getAvailableRooms
+  getAvailableRooms,
+  filterRoomByType
 }

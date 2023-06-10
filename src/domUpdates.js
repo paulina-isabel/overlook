@@ -7,13 +7,16 @@ import { getAvailableRooms, getCustomerBookings } from './customers';
 import flatpickr from 'flatpickr';
 
 const bookingsContainer = document.querySelector('.bookings');
-const availableRoomsContainer = document.querySelector('.available-rooms')
+const availableRoomsContainer = document.querySelector('.available-rooms');
+// const dropdownSection = document.querySelector('.dropdown-filter');
+// const filterButton = document.querySelector('filter-button')
 
 let roomsData;
 let customersData;
 let bookingsData;
 let customerBookings;
 let currentCustomerBookings;
+let roomTypes;
 
 // =====================================================================
 // ============================  FUNCTIONS  ============================
@@ -71,10 +74,9 @@ const getTotalSpent = () => {
 
 const showAvailableRooms = (dateStr, bookingsData, roomsData) => {
   availableRoomsContainer.innerHTML = ''
-  
+
   let availableRoomsList = getAvailableRooms(dateStr, bookingsData, roomsData);
   availableRoomsList.forEach((booking) => {
-    // console.log('booking', booking)
     availableRoomsContainer.innerHTML += `
       <div class="single-available-room">
         Cost Per Night: $${booking.costPerNight}<br>
@@ -86,7 +88,17 @@ const showAvailableRooms = (dateStr, bookingsData, roomsData) => {
         <button class="book-room-button">Book This Room</button>
       </div>`
   });
+  
+  dropdownFilterButton.classList.remove('hidden')
 }
+
+const populateFilter = (roomTypes, filterButton) => {
+  filterButton.innerHTML = '';
+  
+  roomTypes.forEach(type => {
+    filterButton.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
+  });
+};
 
 const setData = () => {
   getAllData().then(data => {
