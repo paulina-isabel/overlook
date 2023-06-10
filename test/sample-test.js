@@ -251,6 +251,6 @@ describe ('filter rooms by type', () => {
   });
 
   it('should return an apology if there are no avaiable rooms', () => {
-    expect(roomsByCategory3).to.equal('Sorry, there are no avaiable rooms in the ugly category :(');
+    expect(roomsByCategory3).to.equal('Sorry, there are no available rooms in the ugly category :(');
   });
 });

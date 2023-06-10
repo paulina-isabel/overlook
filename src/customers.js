@@ -78,8 +78,10 @@ const filterRoomByType = (roomz, type) => {
     return room.roomType === type
   })
   
+  // console.log(roomz)
+
   if (!filteredRooms.length) {
-    return `Sorry, there are no avaiable rooms in the ${type} category :(`
+    return `Sorry, there are no available rooms in the ${type} category :(`
   }
 
   return filteredRooms

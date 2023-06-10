@@ -2,41 +2,21 @@
 // Do not delete or rename this file ********
 
 import { filterRoomByType } from './customers';
-import { filterButtons, roomsData } from './domUpdates';
+import { filterButtons, sar, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, suiteButton, userSelectedDate, bookingsData, bookRoomButton } from './domUpdates';
 
-window.addEventListener('load', function() {
-  setData();
-  getData('bookings').then(result => {
-    customerBookings = result.bookings;
-    // upon login, capture customer id to pass in as argument in getCustomerBookings below:
-    currentCustomerBookings = getCustomerBookings(customerBookings, 9);
-    // console.log('current customer bookings', currentCustomerBookings)
-    showCustomerBookings();
-    flatpickr('#date', {
-      dateFormat: "Y/m/d",
-      // minDate: "today",
-      mode: 'single',
-      onChange: function(selectedDate, dateString) {
-        showAvailableRooms(dateString, bookingsData, roomsData)
-        console.log(selectedDate)
-        console.log("Selected date:", dateString);
-      }
-    });
-  });
-});
+filterButtons.addEventListener('click', (e) => {
+  const roomType = e.target.classList.value;
+  let rooms = filterRoomByType(roomsData, roomType)
+  console.log('available rooms by type', rooms)
+  showAvailableRooms(userSelectedDate, bookingsData, rooms)
+  // console.log('rooms data inside event list', roomsData)
+})
 
-filterButtons.addEventListener('click', filterRoomByType(roomsData, 'suite'))
-console.log('eoomz', roomsData)
-
-const setData = () => {
-  getAllData().then(data => {
-    roomsData = data[0].rooms;
-    customersData = data[1].customers;
-    bookingsData = data[2].bookings;
-  });
-};
-
-export 
+availableRoomsContainer.addEventListener('click', (e) => {
+  const chosenRoom = e.target.id;
+  const chosenRoomDate = userSelectedDate;
+  console.log('chosen room', chosenRoom, userSelectedDate)
+})
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
