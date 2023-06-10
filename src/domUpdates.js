@@ -3,13 +3,15 @@
 // =====================================================================
 
 import { getData, getAllData } from '../apiCalls';
-import { getAvailableRooms, getCustomerBookings } from './customers';
+import { getAvailableRooms, getCustomerBookings, filterRoomByType } from './customers';
 import flatpickr from 'flatpickr';
 
+const filterButtons = document.querySelector('.filter-buttons')
 const bookingsContainer = document.querySelector('.bookings');
 const availableRoomsContainer = document.querySelector('.available-rooms');
-// const dropdownSection = document.querySelector('.dropdown-filter');
-// const filterButton = document.querySelector('filter-button')
+const dropdownSection = document.querySelector('.dropdown-filter');
+const dropDownSect = document.querySelector('.filter-dropdown-categories');
+
 
 let roomsData;
 let customersData;
@@ -22,28 +24,7 @@ let roomTypes;
 // ============================  FUNCTIONS  ============================
 // =====================================================================
 
-window.addEventListener('load', function() {
-  setData();
-  getData('bookings').then(result => {
-    customerBookings = result.bookings;
-    // upon login, capture customer id to pass in as argument in getCustomerBookings below:
-    currentCustomerBookings = getCustomerBookings(customerBookings, 9);
-    console.log('current customer bookings', currentCustomerBookings)
-    showCustomerBookings();
-    flatpickr('#date', {
-      dateFormat: "Y/m/d",
-      // minDate: "today",
-      mode: 'single',
-      onChange: function(selectedDate, dateString) {
-        showAvailableRooms(dateString, bookingsData, roomsData)
-        console.log(selectedDate)
-        console.log("Selected date:", dateString);
-      }
-    });
-    
-    // console.log('bookings', bookingsData)
-  });
-});
+
 
 const showCustomerBookings = () => {
   let totalSpent = getTotalSpent();
@@ -88,27 +69,31 @@ const showAvailableRooms = (dateStr, bookingsData, roomsData) => {
         <button class="book-room-button">Book This Room</button>
       </div>`
   });
+  console.log(availableRoomsList)
   
-  dropdownFilterButton.classList.remove('hidden')
+  // the code below is unhiding the filter button
+  dropdownSection.classList.remove('hidden');
+  populateFilterButton(roomsData, dropDownSect);
 }
 
-const populateFilter = (roomTypes, filterButton) => {
-  filterButton.innerHTML = '';
-  
+const populateFilterButton = (roomsData, dropDownSect) => {
+  dropDownSect.innerHTML = '';
+  roomTypes = []
+  roomsData.forEach((room) => {
+    if (!roomTypes.includes(room.roomType)) {
+      roomTypes.push(room.roomType)
+    }
+  })
+  // console.log('room typez', roomTypes)
   roomTypes.forEach(type => {
-    filterButton.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
+    dropDownSect.innerHTML += `<button class="filter-buttons" aria-label="filter for ${type}">${type}</button><br>`;
   });
 };
 
-const setData = () => {
-  getAllData().then(data => {
-    roomsData = data[0].rooms;
-    customersData = data[1].customers;
-    bookingsData = data[2].bookings;
-  });
-};
+
 
 export {
-  setData,
-  showCustomerBookings
+  // setData,
+  showCustomerBookings,
+  filterButtons
 };

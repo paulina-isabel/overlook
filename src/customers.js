@@ -73,8 +73,8 @@ const getAvailableRooms = (date, bookingsData, roomsData) => {
  return availableRooms
 }
 
-const filterRoomByType = (roomsData, type) => {
-  let filteredRooms = roomsData.filter((room) => {
+const filterRoomByType = (roomz, type) => {
+  let filteredRooms = roomz.filter((room) => {
     return room.roomType === type
   })
   
