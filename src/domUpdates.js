@@ -66,6 +66,7 @@ const showCustomerBookings = () => {
   showWelcomeMessage()
    // upon login, capture customer id to pass in as argument in getCustomerBookings below:
   currentCustomerBookings = getCustomerBookings(customerBookings, currentCustomer.id);
+
   // console.log('rooms data', roomsData)
   let totalSpent = getTotalSpent();
   bookingsContainer.innerHTML = "";
@@ -75,6 +76,7 @@ const showCustomerBookings = () => {
       </div>`
   });
   bookingsContainer.innerHTML += `Your total amount spent is: $${totalSpent}`
+  console.log('curr cust bookings', currentCustomerBookings)
 };
 
 const getTotalSpent = () => {
@@ -150,5 +152,8 @@ export {
   bookingsData,
   bookRoomButton,
   availableRoomsContainer,
-  currentCustomer
+  currentCustomer,
+  currentCustomerBookings,
+  customerBookings,
+
 };

@@ -2,8 +2,11 @@
 // Do not delete or rename this file ********
 import './css/styles.css';
 import './domUpdates'
-import { filterRoomByType } from './customers';
-import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, suiteButton, userSelectedDate, bookingsData, bookRoomButton, currentCustomer } from './domUpdates';
+import { filterRoomByType, getCustomerBookings } from './customers';
+import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, customerBookings, bookRoomButton } from './domUpdates';
+import { postData } from '../apiCalls';
+
+let chosenRoomData;
 
 filterButtons.addEventListener('click', (e) => {
   const desiredRoomType = e.target.classList.value;
@@ -14,15 +17,26 @@ filterButtons.addEventListener('click', (e) => {
 })
 
 availableRoomsContainer.addEventListener('click', (e) => {
-  const chosenRoomNumber = e.target.id;
-  const chosenRoomDate = userSelectedDate;
-  const chosenRoomData = {
-    userID: currentCustomer.id,
-    date: chosenRoomDate,
-    roomNumber: chosenRoomNumber
+  if (e.target.classList.contains('book-room-button')) {
+    console.log('cust book before post', customerBookings)
+    const chosenRoomNumber = e.target.id;
+    const chosenRoomDate = userSelectedDate;
+    console.log('chosen room #', chosenRoomNumber, 'chosen date', chosenRoomDate)
+    chosenRoomData = {
+      "userID": currentCustomer.id,
+      "date": chosenRoomDate,
+      "roomNumber": parseInt(chosenRoomNumber)
+    }
+    postData(chosenRoomData)
+
+    // .then(() => 
+    // console.log('cust book after post', customerBookings))
+
+    // showCustomerBookings()
+    console.log(typeof currentCustomer.id, 'typeof')
+    let currentCustomerBookings = getCustomerBookings(customerBookings, currentCustomer.id);
+    console.log('curr cust booknz', currentCustomerBookings)
   }
-  console.log('room data for post', chosenRoomData)
-  console.log('chosen room', chosenRoomNumber, 'chosen room date', chosenRoomDate)
 })
 
 // An example of how you tell webpack to use a CSS (SCSS) file
