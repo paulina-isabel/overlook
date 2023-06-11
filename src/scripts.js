@@ -3,7 +3,7 @@
 import './css/styles.css';
 import './domUpdates'
 import { filterRoomByType, getCustomerBookings } from './customers';
-import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, customerBookings, bookRoomButton } from './domUpdates';
+import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, bookRoomButton } from './domUpdates';
 import { postData } from '../apiCalls';
 
 let chosenRoomData;
@@ -18,7 +18,7 @@ filterButtons.addEventListener('click', (e) => {
 
 availableRoomsContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('book-room-button')) {
-    console.log('cust book before post', customerBookings)
+    // console.log('cust book before post', customerBookings)
     const chosenRoomNumber = e.target.id;
     const chosenRoomDate = userSelectedDate;
     console.log('chosen room #', chosenRoomNumber, 'chosen date', chosenRoomDate)
@@ -28,14 +28,15 @@ availableRoomsContainer.addEventListener('click', (e) => {
       "roomNumber": parseInt(chosenRoomNumber)
     }
     postData(chosenRoomData)
-
+    // showCustomerBookings()
     // .then(() => 
     // console.log('cust book after post', customerBookings))
 
     // showCustomerBookings()
-    console.log(typeof currentCustomer.id, 'typeof')
-    let currentCustomerBookings = getCustomerBookings(customerBookings, currentCustomer.id);
-    console.log('curr cust booknz', currentCustomerBookings)
+    // console.log(typeof currentCustomer.id, 'typeof')
+    // currentCustomerBookings = getCustomerBookings(customerBookings, currentCustomer.id);
+    // showCustomerBookings()
+    console.log('cust booknz inside event listener', currentCustomerBookings)
   }
 })
 

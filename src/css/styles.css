@@ -93,6 +93,10 @@ h1 {
   font-size: 35px;
 }
 
+.total-spent {
+  font-size: 26px;
+}
+
 .hidden {
   display: none !important;
 }

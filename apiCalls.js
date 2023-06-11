@@ -1,7 +1,7 @@
 // =====================================================================
 // =========================  FETCH REQUESTS  ==========================
 // =====================================================================
-import { setData, bookingsData } from './src/domUpdates.js';
+import { setData, bookingsData, showCustomerBookings, currentCustomerBookings } from './src/domUpdates.js';
 
 const getData = (data) => {
   return fetch(`http://localhost:3001/api/v1/${data}`)
@@ -16,7 +16,16 @@ const postData = (data) => {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(response => response.json())
-    .then(json => bookingsData.push(json.newBooking))
+    .then(
+      json => {
+      bookingsData.push(json.newBooking),
+      setData(),
+      showCustomerBookings(), 
+      
+      console.log(bookingsData, 'bookings inside api calls'),
+      console.log('cust bookings in api calls', currentCustomerBookings)
+      }
+    )
     // call show bookings function
     .then(resolve => setData())
     .catch(err => console.log("ERROR", err));
@@ -30,6 +39,7 @@ export {
   getAllData,
   getData,
   postData,
+  showCustomerBookings,
   bookingsData
 };
 

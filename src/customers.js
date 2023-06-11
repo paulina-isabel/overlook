@@ -44,7 +44,7 @@ const getCustomerBookings = (bookingsData, customerId) => {
     return 'No bookings found'
   };
 
-  const myBookings = bookingsData.filter((booking) => {
+  let myBookings = bookingsData.filter((booking) => {
     return booking.userID === customerId
   })
 

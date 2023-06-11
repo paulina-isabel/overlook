@@ -8,6 +8,7 @@ import flatpickr from 'flatpickr';
 
 const filterButtons = document.querySelector('.filter-buttons')
 const bookingsContainer = document.querySelector('.bookings');
+const totalSpentContainer = document.querySelector('.total-spent')
 const availableRoomsContainer = document.querySelector('.available-rooms');
 const dropdownSection = document.querySelector('.dropdown-filter');
 const dropDownSect = document.querySelector('.filter-buttons');
@@ -18,12 +19,13 @@ const welcomeMessage = document.querySelector('.user-welcome-message');
 let roomsData;
 let customersData;
 let bookingsData;
-let customerBookings;
+
 let currentCustomerBookings;
 let roomTypes;
 let availableRoomsList;
 let userSelectedDate;
 let currentCustomer;
+let totalSpent;
 
 // =====================================================================
 // ============================  FUNCTIONS  ============================
@@ -32,8 +34,7 @@ let currentCustomer;
 window.addEventListener('load', function() {
   setData();
   getData('bookings').then(result => {
-    customerBookings = result.bookings;
-    console.log('bookings data', roomsData)
+    // console.log('bookings data', roomsData)
     showCustomerBookings();
     flatpickr('#date', {
       dateFormat: "Y/m/d",
@@ -51,37 +52,39 @@ window.addEventListener('load', function() {
 
 const getRandomUser = () => {
   let randomUserIndex = Math.floor(Math.random() * customersData.length)
-  console.log('random user index', randomUserIndex)
-  currentCustomer = customersData[randomUserIndex]
+  // console.log('random user index', randomUserIndex)
+  currentCustomer = customersData[1]
   console.log('current cust', currentCustomer.id)
 }
 
 const showWelcomeMessage = () => {
-  console.log('customer data', customersData)
+  // console.log('customer data', customersData)
   getRandomUser()
   welcomeMessage.innerText = `Welcome, ${currentCustomer.name}`
 }
 
 const showCustomerBookings = () => {
-  showWelcomeMessage()
-   // upon login, capture customer id to pass in as argument in getCustomerBookings below:
-  currentCustomerBookings = getCustomerBookings(customerBookings, currentCustomer.id);
+  console.log('hi')
 
-  // console.log('rooms data', roomsData)
-  let totalSpent = getTotalSpent();
+  showWelcomeMessage()
   bookingsContainer.innerHTML = "";
+   // upon login, capture customer id to pass in as argument in getCustomerBookings below:
+  currentCustomerBookings = getCustomerBookings(bookingsData, currentCustomer.id);
+  // console.log('rooms data', roomsData)
+  
   currentCustomerBookings.forEach((booking) => {
     bookingsContainer.innerHTML += `
       <div class="single-booking">Date: ${booking.date} <br> Room: ${booking.roomNumber}
       </div>`
   });
-  bookingsContainer.innerHTML += `Your total amount spent is: $${totalSpent}`
-  console.log('curr cust bookings', currentCustomerBookings)
+  let totalSpent2 = getTotalSpent();
+  totalSpentContainer.innerHTML = `Your total amount spent is: $${totalSpent2}`
+  // console.log('curr cust bookings inshowCustomerBookings()', currentCustomerBookings)
 };
 
 const getTotalSpent = () => {
   let roomsBookedNumbers = [];
-  let totalSpent = 0;
+  totalSpent = 0;
   currentCustomerBookings.forEach((booking) => {
     roomsBookedNumbers.push(booking.roomNumber)
   });
@@ -143,10 +146,10 @@ const setData = () => {
 export {
   setData,
   showCustomerBookings,
+  showAvailableRooms,
   filterButtons,
   roomsData,
   availableRoomsList,
-  showAvailableRooms,
   suiteButton,
   userSelectedDate,
   bookingsData,
@@ -154,6 +157,4 @@ export {
   availableRoomsContainer,
   currentCustomer,
   currentCustomerBookings,
-  customerBookings,
-
 };
