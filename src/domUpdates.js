@@ -140,7 +140,9 @@ const populateFilterButton = (roomsData) => {
       roomTypes.push(room.roomType)
     };
   });
-  dropDownSect.innerHTML += `Filter By Room Type:<br>`
+  dropDownSect.innerHTML += 
+    `Filter By Room Type: <br> 
+    <button class="all-rooms" aria-label="filter for all rooms">all</button>`
   console.log('room typez', roomTypes)
   roomTypes.forEach(type => {
     dropDownSect.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
@@ -160,6 +162,7 @@ export {
   showCustomerBookings,
   showAvailableRooms,
   populateFilterButton,
+  populateAvailableRooms,
   filterButtons,
   roomsData,
   availableRoomsList,

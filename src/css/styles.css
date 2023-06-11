@@ -105,6 +105,10 @@ h1 {
   font-size: 26px;
 }
 
+.showing-all {
+  font-size: 12px;
+}
+
 .hidden {
   display: none !important;
 }

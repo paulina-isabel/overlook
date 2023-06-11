@@ -3,23 +3,26 @@
 import './css/styles.css';
 import './domUpdates'
 import { filterRoomByType, getCustomerBookings } from './customers';
-import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, bookRoomButton, populateFilterButton } from './domUpdates';
+import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, bookRoomButton, populateFilterButton, populateAvailableRooms } from './domUpdates';
 import { postData } from '../apiCalls';
+
+const allRoomsButton = document.querySelector('.all-rooms-button')
 
 let chosenRoomData;
 
 filterButtons.addEventListener('click', (e) => {
   const desiredRoomType = e.target.classList.value;
-  let rooms = filterRoomByType(roomsData, desiredRoomType);
-  // console.log('available rooms by type', rooms)
-  showAvailableRooms(userSelectedDate, bookingsData, rooms);
-  populateFilterButton(roomsData);
-  // console.log('rooms data inside event list', roomsData)
+  if (desiredRoomType === 'all-rooms') {
+    showAvailableRooms(userSelectedDate, bookingsData, roomsData);
+  } else {
+    let rooms = filterRoomByType(roomsData, desiredRoomType);
+    showAvailableRooms(userSelectedDate, bookingsData, rooms);
+    populateFilterButton(roomsData);
+  }
 })
 
 availableRoomsContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('book-room-button')) {
-    // console.log('cust book before post', customerBookings)
     const chosenRoomNumber = e.target.id;
     const chosenRoomDate = userSelectedDate;
     console.log('chosen room #', chosenRoomNumber, 'chosen date', chosenRoomDate)
@@ -29,15 +32,6 @@ availableRoomsContainer.addEventListener('click', (e) => {
       "roomNumber": parseInt(chosenRoomNumber)
     }
     postData(chosenRoomData)
-    // showCustomerBookings()
-    // .then(() => 
-    // console.log('cust book after post', customerBookings))
-
-    // showCustomerBookings()
-    // console.log(typeof currentCustomer.id, 'typeof')
-    // currentCustomerBookings = getCustomerBookings(customerBookings, currentCustomer.id);
-    // showCustomerBookings()
-    console.log('cust booknz inside event listener', currentCustomerBookings)
   }
 })
 
