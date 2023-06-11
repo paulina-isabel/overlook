@@ -31,16 +31,18 @@
     </div>
     <aside class="date-picker-aside" id="date-picker">
       <h2 class="make-booking-title">Make a new booking</h2>
-      <form>
-        <label for="date" class="desired-date-title">Select your desired date to see available rooms:</label><br><br>
-        <input type="text" id="date" name="date" placeholder="Click to select"><br><br>
-
+      <form class="date-picker">
+        <label for="date" class="desired-date-title">Select your desired date to see available rooms:</label><br>
+        <input type="text" id="date" name="date" placeholder="Click to select"><br>
       </form>
+      <div class="showing-all hidden">
+        <!-- "Showing All Available Rooms on x date" message goes here-->
+      </div>
       <div class="dropdown-filter hidden">
-      Filter By Room Type
-        <ul class="filter-buttons">
+        <!-- Filter By Room Type message goes here -->
+        <section class="filter-buttons">
           <!-- Room type buttons go here  -->
-        </ul>
+        </section>
       </div>
       <div class="available-rooms">
         <!-- Available rooms go here -->

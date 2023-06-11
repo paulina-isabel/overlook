@@ -69,6 +69,7 @@ h1 {
 .date-picker-aside {
   /* text-align: center; */
   display: flex;
+  /* align-items: center; */
   flex-direction: column;
   position: absolute;
   bottom: 0;
@@ -86,14 +87,21 @@ h1 {
 }
 
 .desired-date-title {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .make-booking-title {
   font-size: 35px;
 }
 
+.dropdown-filter {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
 .total-spent {
+  padding-top: 10px;
   font-size: 26px;
 }
 

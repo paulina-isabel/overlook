@@ -3,16 +3,17 @@
 import './css/styles.css';
 import './domUpdates'
 import { filterRoomByType, getCustomerBookings } from './customers';
-import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, bookRoomButton } from './domUpdates';
+import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, bookRoomButton, populateFilterButton } from './domUpdates';
 import { postData } from '../apiCalls';
 
 let chosenRoomData;
 
 filterButtons.addEventListener('click', (e) => {
   const desiredRoomType = e.target.classList.value;
-  let rooms = filterRoomByType(roomsData, desiredRoomType)
+  let rooms = filterRoomByType(roomsData, desiredRoomType);
   // console.log('available rooms by type', rooms)
-  showAvailableRooms(userSelectedDate, bookingsData, rooms)
+  showAvailableRooms(userSelectedDate, bookingsData, rooms);
+  populateFilterButton(roomsData);
   // console.log('rooms data inside event list', roomsData)
 })
 
@@ -42,7 +43,5 @@ availableRoomsContainer.addEventListener('click', (e) => {
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 
-
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/hotel-room.png'
-

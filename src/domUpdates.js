@@ -15,6 +15,7 @@ const dropDownSect = document.querySelector('.filter-buttons');
 const suiteButton = document.querySelector('.suite');
 const bookRoomButton = document.querySelectorAll('.book-room-button');
 const welcomeMessage = document.querySelector('.user-welcome-message');
+const showingAllMessage = document.querySelector('.showing-all')
 
 let roomsData;
 let customersData;
@@ -105,10 +106,13 @@ const showAvailableRooms = (dateString, bookingsData, roomsData) => {
 
   if (!availableRoomsList.length) {
     dropdownSection.classList.add('hidden');
+    showingAllMessage.classList.add('hidden');
     availableRoomsContainer.innerHTML = `No available rooms on ${userSelectedDate}, please select a different date.`
   } else {
     populateAvailableRooms(availableRoomsList);
     dropdownSection.classList.remove('hidden');
+    showingAllMessage.classList.remove('hidden');
+    showingAllMessage.innerText = `Showing all available rooms on ${userSelectedDate}`
     populateFilterButton(roomsData, dropDownSect);
   };
 };
@@ -128,7 +132,7 @@ const populateAvailableRooms = (availableRoomsList) => {
   });
 };
 
-const populateFilterButton = (roomsData, dropDownSect) => {
+const populateFilterButton = (roomsData) => {
   dropDownSect.innerHTML = '';
   roomTypes = [];
   roomsData.forEach((room) => {
@@ -136,9 +140,10 @@ const populateFilterButton = (roomsData, dropDownSect) => {
       roomTypes.push(room.roomType)
     };
   });
-  // console.log('room typez', roomTypes)
+  dropDownSect.innerHTML += `Filter By Room Type:<br>`
+  console.log('room typez', roomTypes)
   roomTypes.forEach(type => {
-    dropDownSect.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button><br>`;
+    dropDownSect.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
   });
 };
 
@@ -154,6 +159,7 @@ export {
   setData,
   showCustomerBookings,
   showAvailableRooms,
+  populateFilterButton,
   filterButtons,
   roomsData,
   availableRoomsList,
