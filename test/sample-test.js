@@ -186,9 +186,9 @@ beforeEach(() => {
     );
   });
 
-  it('should return a message if no rooms are available', () => {
-    expect(availableRooms2).to.equal('No rooms are available on the selected date, please pick another date.')
-  })
+  // it('should return a message if no rooms are available', () => {
+  //   expect(availableRooms2).to.equal('No rooms are available on the selected date, please pick another date.')
+  // })
 });
 
 describe ('filter rooms by type', () => {

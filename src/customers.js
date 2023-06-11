@@ -66,9 +66,9 @@ const getAvailableRooms = (date, bookingsData, roomsData) => {
     return !unavailableRooms.includes(room.number) 
   })
 
-  if(!availableRooms.length) {
-    return 'No rooms are available on the selected date, please pick another date.'
-  }
+  // if(!availableRooms.length) {
+  //   return 'No rooms are available on the selected date, please pick another date.'
+  // }
 
  return availableRooms
 }

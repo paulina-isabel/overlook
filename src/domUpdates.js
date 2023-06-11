@@ -34,17 +34,17 @@ let totalSpent;
 window.addEventListener('load', function() {
   setData();
   getData('bookings').then(result => {
-    // console.log('bookings data', roomsData)
     showCustomerBookings();
     flatpickr('#date', {
       dateFormat: "Y/m/d",
       // minDate: "today",
       mode: 'single',
       onChange: function(selectedDate, dateString) {
-        showAvailableRooms(dateString, bookingsData, roomsData)
         userSelectedDate = dateString
+        showAvailableRooms(dateString, bookingsData, roomsData)
         // console.log(selectedDate)
         // console.log("Selected date:", dateString);
+        // console.log('user sel', userSelectedDate)
       }
     });
   });
@@ -67,7 +67,7 @@ const showCustomerBookings = () => {
   console.log('hi')
 
   showWelcomeMessage()
-  bookingsContainer.innerHTML = "";
+  bookingsContainer.innerHTML = '';
    // upon login, capture customer id to pass in as argument in getCustomerBookings below:
   currentCustomerBookings = getCustomerBookings(bookingsData, currentCustomer.id);
   // console.log('rooms data', roomsData)
@@ -78,7 +78,7 @@ const showCustomerBookings = () => {
       </div>`
   });
   let totalSpent2 = getTotalSpent();
-  totalSpentContainer.innerHTML = `Your total amount spent is: $${totalSpent2}`
+  totalSpentContainer.innerHTML = `Your total amount spent is: $${totalSpent2}`;
   // console.log('curr cust bookings inshowCustomerBookings()', currentCustomerBookings)
 };
 
@@ -92,17 +92,29 @@ const getTotalSpent = () => {
   roomsData.forEach((room) => {
     if (roomsBookedNumbers.includes(room.number)) {
       totalSpent += room.costPerNight
-    }
+    };
   });
 
   return totalSpent.toFixed(2);
 }
 
 const showAvailableRooms = (dateString, bookingsData, roomsData) => {
-  availableRoomsContainer.innerHTML = ''
+  availableRoomsContainer.innerHTML = '';
 
   availableRoomsList = getAvailableRooms(dateString, bookingsData, roomsData);
-  availableRoomsList.forEach((booking) => {
+
+  if (!availableRoomsList.length) {
+    dropdownSection.classList.add('hidden');
+    availableRoomsContainer.innerHTML = `No available rooms on ${userSelectedDate}, please select a different date.`
+  } else {
+    populateAvailableRooms(availableRoomsList);
+    dropdownSection.classList.remove('hidden');
+    populateFilterButton(roomsData, dropDownSect);
+  };
+};
+
+const populateAvailableRooms = (availableRoomsList) => {
+    availableRoomsList.forEach((booking) => {
     availableRoomsContainer.innerHTML += `
       <div class="single-available-room">
         Cost Per Night: $${booking.costPerNight}<br>
@@ -114,21 +126,16 @@ const showAvailableRooms = (dateString, bookingsData, roomsData) => {
         <button class="book-room-button" id="${booking.number}">Book This Room</button>
       </div>`
   });
-  // console.log('avail roomz', availableRoomsList)
-  
-  // the code below is unhiding the filter button
-  dropdownSection.classList.remove('hidden');
-  populateFilterButton(roomsData, dropDownSect);
-}
+};
 
 const populateFilterButton = (roomsData, dropDownSect) => {
   dropDownSect.innerHTML = '';
-  roomTypes = []
+  roomTypes = [];
   roomsData.forEach((room) => {
     if (!roomTypes.includes(room.roomType)) {
       roomTypes.push(room.roomType)
-    }
-  })
+    };
+  });
   // console.log('room typez', roomTypes)
   roomTypes.forEach(type => {
     dropDownSect.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button><br>`;
