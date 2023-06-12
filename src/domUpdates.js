@@ -3,7 +3,8 @@
 // =====================================================================
 
 import { getData, getAllData } from '../apiCalls';
-import { getAvailableRooms, getCustomerBookings } from './customers';
+import { getAvailableRooms, getCustomerBookings, getCustomer } from './customers';
+import { customerId } from './scripts';
 import flatpickr from 'flatpickr';
 
 const filterButtons = document.querySelector('.filter-buttons')
@@ -17,12 +18,8 @@ const bookRoomButton = document.querySelectorAll('.book-room-button');
 const welcomeMessage = document.querySelector('.user-welcome-message');
 const showingAllMessage = document.querySelector('.showing-all')
 const bookingConfirmedMessage = document.querySelector('.booking-confirmed')
-
-// hide/unhide:
-// user-welcome-message
-// customer-bookings
-// total-spent
-// date-picker-aside
+const customerBookings = document.querySelector('.customer-bookings');
+const datePickerAside = document.querySelector('.date-picker-aside');
 
 let roomsData;
 let customersData;
@@ -39,9 +36,22 @@ let totalSpent;
 // ============================  FUNCTIONS  ============================
 // =====================================================================
 
-window.addEventListener('load', () => {
-  start();
-});
+// window.addEventListener('load', () => {
+//   start();
+// });
+
+
+// hide/unhide:
+// user-welcome-message
+// customer-bookings
+// total-spent
+// date-picker-aside
+const renderCustomerPage = () => {
+  welcomeMessage.classList.remove('hidden');
+  customerBookings.classList.remove('hidden');
+  totalSpentContainer.classList.remove('hidden');
+  datePickerAside.classList.remove('hidden');
+}
 
 const start = () => {
   setData();
@@ -63,14 +73,17 @@ const start = () => {
   });
 }
 
-const getRandomUser = () => {
-  let randomUserIndex = Math.floor(Math.random() * customersData.length)
-  currentCustomer = customersData[randomUserIndex]
-  console.log('current cust', currentCustomer.id)
-}
+// const getRandomUser = () => {
+//   let randomUserIndex = Math.floor(Math.random() * customersData.length)
+//   currentCustomer = customersData[randomUserIndex]
+//   console.log('current cust', currentCustomer.id)
+// }
 
-const showWelcomeMessage = () => {
-  getRandomUser()
+
+const showWelcomeMessage = () => {  
+  console.log('customer id in domups', typeof customerId)
+  currentCustomer = getCustomer(customersData, customerId)
+  console.log('current customer', currentCustomer)
   welcomeMessage.innerText = `Welcome, ${currentCustomer.name}`
 }
 
@@ -81,7 +94,7 @@ const showCustomerBookings = () => {
   currentCustomerBookings = getCustomerBookings(bookingsData, currentCustomer.id);
   currentCustomerBookings.forEach((booking) => {
     bookingsContainer.innerHTML += `
-      <div class="single-booking">Date: ${booking.date} <br> Room: ${booking.roomNumber}
+      <div class="single-booking" tabindex="0">Date: ${booking.date} <br> Room: ${booking.roomNumber}
       </div>`
   });
   let totalSpent2 = getTotalSpent();
@@ -125,7 +138,7 @@ const showAvailableRooms = (dateString, bookingsData, roomsData) => {
 const populateAvailableRooms = (availableRoomsList) => {
     availableRoomsList.forEach((booking) => {
     availableRoomsContainer.innerHTML += `
-      <div class="single-available-room" tabindex="0">
+      <div class="single-available-room">
         Cost Per Night: $${booking.costPerNight}<br>
         Room Type: ${booking.roomType}<br> 
         Beds: ${booking.numBeds}<br>
@@ -146,7 +159,7 @@ const populateFilterButton = (roomsData) => {
     };
   });    
   dropDownSect.innerHTML += 
-    `Filter By Room Type: <br>` 
+    `Filter By Available Room Type: <br>` 
   roomTypes.forEach(type => {
     dropDownSect.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
   });  
@@ -180,6 +193,8 @@ export {
   populateFilterButton,
   populateAvailableRooms,
   confirmBooking,
+  renderCustomerPage,
+  start,
   filterButtons,
   roomsData,
   availableRoomsList,

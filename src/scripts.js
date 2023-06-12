@@ -3,10 +3,32 @@
 import './css/styles.css';
 import './domUpdates'
 import { filterRoomByType } from './customers';
-import { filterButtons, availableRoomsContainer, roomsData, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, populateFilterButton, confirmBooking } from './domUpdates';
+import { filterButtons, availableRoomsContainer, roomsData, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, populateFilterButton, confirmBooking, renderCustomerPage, start } from './domUpdates';
 import { postData } from '../apiCalls';
 
 let chosenRoomData;
+let customerId;
+const loginForm = document.querySelector('.login');
+const loginButton = document.querySelector('.submit-button');
+const loginErrorMsg = document.querySelector('#login-error-msg');
+
+loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    let password = loginForm.password.value;
+
+    if (password === "overlook2021") { 
+      let username = loginForm.username.value;   
+      console.log('login butt works')
+      let customerUsername = username.split('customer');
+      customerId = parseInt(customerUsername[1]);
+      console.log('customer id in scripts', customerId)
+      start();
+      renderCustomerPage();
+    } else {
+      loginErrorMsg.style.opacity = 1;
+    }
+})
 
 filterButtons.addEventListener('click', (e) => {
   const desiredRoomType = e.target.classList.value;
@@ -36,6 +58,10 @@ availableRoomsContainer.addEventListener('click', (e) => {
     
   }
 })
+
+export {
+  customerId
+}
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 
