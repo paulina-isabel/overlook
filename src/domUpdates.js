@@ -101,7 +101,7 @@ const showAvailableRooms = (dateString, bookingsData, roomsData) => {
   if (!availableRoomsList.length) {
     dropdownSection.classList.add('hidden');
     showingAllMessage.classList.add('hidden');
-    availableRoomsContainer.innerHTML = `No available rooms for this search on ${userSelectedDate}, please modify your search.`
+    availableRoomsContainer.innerHTML = `No availability. Please modify your search!`
   } else {
     populateAvailableRooms(availableRoomsList);
     dropdownSection.classList.remove('hidden');
