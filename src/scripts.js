@@ -2,11 +2,9 @@
 // Do not delete or rename this file ********
 import './css/styles.css';
 import './domUpdates'
-import { filterRoomByType, getCustomerBookings } from './customers';
-import { filterButtons, availableRoomsContainer, roomsData, availableRoomsList, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, showCustomerBookings, currentCustomerBookings, bookRoomButton, populateFilterButton, populateAvailableRooms } from './domUpdates';
+import { filterRoomByType } from './customers';
+import { filterButtons, availableRoomsContainer, roomsData, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, populateFilterButton, confirmBooking } from './domUpdates';
 import { postData } from '../apiCalls';
-
-const allRoomsButton = document.querySelector('.all-rooms-button')
 
 let chosenRoomData;
 
@@ -17,6 +15,7 @@ filterButtons.addEventListener('click', (e) => {
   } else {
     let rooms = filterRoomByType(roomsData, desiredRoomType);
     showAvailableRooms(userSelectedDate, bookingsData, rooms);
+    
     populateFilterButton(roomsData);
   }
 })
@@ -25,13 +24,16 @@ availableRoomsContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('book-room-button')) {
     const chosenRoomNumber = e.target.id;
     const chosenRoomDate = userSelectedDate;
-    console.log('chosen room #', chosenRoomNumber, 'chosen date', chosenRoomDate)
     chosenRoomData = {
       "userID": currentCustomer.id,
       "date": chosenRoomDate,
       "roomNumber": parseInt(chosenRoomNumber)
     }
     postData(chosenRoomData)
+    .then(() => {
+      confirmBooking(chosenRoomDate, chosenRoomNumber)
+    })
+    
   }
 })
 

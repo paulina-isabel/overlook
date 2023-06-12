@@ -4,9 +4,10 @@
 }
 
 body {
-  background-image: url("../images/hotel-room.png");
+  background-image: url("../images/stanley-in-snow.png");
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 
 h1 {
@@ -16,7 +17,6 @@ h1 {
 }
 
 .customer-bookings {
-  width: 80%;
   margin: 0 auto; /* Centers the section horizontally */
   position: relative;
   border-radius: 20px; 
@@ -101,8 +101,13 @@ h1 {
 }
 
 .total-spent {
+  margin: 0 auto; /* Centers the section horizontally */
+  width: 40vw;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
   padding-top: 10px;
   font-size: 26px;
+  border-radius: 20px; 
 }
 
 .showing-all {

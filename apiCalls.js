@@ -21,7 +21,7 @@ const postData = (data) => {
       bookingsData.push(json.newBooking),
       setData(),
       showCustomerBookings(), 
-      
+
       console.log(bookingsData, 'bookings inside api calls'),
       console.log('cust bookings in api calls', currentCustomerBookings)
       }
