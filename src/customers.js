@@ -44,7 +44,7 @@ const getCustomerBookings = (bookingsData, customerId) => {
     return 'No bookings found'
   };
 
-  const myBookings = bookingsData.filter((booking) => {
+  let myBookings = bookingsData.filter((booking) => {
     return booking.userID === customerId
   })
 
@@ -55,8 +55,42 @@ const getCustomerBookings = (bookingsData, customerId) => {
   return myBookings
 }
 
+const getAvailableRooms = (date, bookingsData, roomsData) => {
+  let unavailableRooms = bookingsData.reduce((unavailRooms, booking) => { if (booking.date === date) {
+    unavailRooms.push(booking.roomNumber)
+  }
+    return unavailRooms
+  }, [])
+
+  let availableRooms = roomsData.filter((room) => {
+    return !unavailableRooms.includes(room.number) 
+  })
+
+  // if(!availableRooms.length) {
+  //   return 'No rooms are available on the selected date, please pick another date.'
+  // }
+
+ return availableRooms
+}
+
+const filterRoomByType = (roomz, type) => {
+  let filteredRooms = roomz.filter((room) => {
+    return room.roomType === type
+  })
+  
+  // console.log(roomz)
+
+  if (!filteredRooms.length) {
+    return `Sorry, there are no available rooms in the ${type} category :(`
+  }
+
+  return filteredRooms
+}
+
 export {
   getCustomer,
   getBookings,
   getCustomerBookings,
+  getAvailableRooms,
+  filterRoomByType
 }

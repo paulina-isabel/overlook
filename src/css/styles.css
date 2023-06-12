@@ -1,9 +1,10 @@
 * {
   font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 body {
-  background-image: url("../images/hotel-room.png");
+  background-image: url("../images/stanley-in-snow.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -15,14 +16,12 @@ h1 {
 }
 
 .customer-bookings {
-  width: 80%; /* Adjust the width as desired */
   margin: 0 auto; /* Centers the section horizontally */
   position: relative;
-  background-color: #C5C3C6;
   border-radius: 20px; 
   padding: 10px 15px;
   width: 40vw;
-  height: 40vh;
+  height: 50vh;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
   background: linear-gradient(to right, transparent, white, white, transparent);
@@ -38,17 +37,21 @@ h1 {
 }
 
 .bookings {
-  text-align: center;
+  /* text-align: center; */
   position: absolute;
-  top: 10vh;
+  /* top: 10vh; */
   height: auto;
-  max-height: 30vh;
+  max-height: 40vh;
   width: 97%;
-  overflow: scroll;
-  /* overflow-x: hidden; */
 }
 
-.single-booking {
+.bookings,
+.available-rooms {
+  overflow: scroll;
+}
+
+.single-booking,
+.single-available-room {
   margin: 8px;
   width: 90%;
   border-radius: 20px; 
@@ -56,3 +59,62 @@ h1 {
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
 }
+
+.flatpickr-input {
+  height: 25px;
+  width: 120px;
+}
+
+.date-picker-aside {
+  /* text-align: center; */
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  width: 20vw;
+  height: 100vh;
+  left: 0;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
+}
+
+#date {
+  /* remove this later if not in use */
+  text-align: center;
+}
+
+.desired-date-title {
+  font-size: 18px;
+}
+
+.make-booking-title {
+  font-size: 35px;
+}
+
+.dropdown-filter {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.total-spent {
+  margin: 0 auto; /* Centers the section horizontally */
+  width: 40vw;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.495);
+  padding-top: 10px;
+  font-size: 26px;
+  border-radius: 20px; 
+}
+
+.showing-all {
+  font-size: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@import '~flatpickr/dist/flatpickr'

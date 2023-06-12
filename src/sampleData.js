@@ -88,7 +88,7 @@ const sampleBookings = [
     "id": "5fwrgu4i7k55hl6t7",
     "userID": 20,
     "date": "2022/02/16",
-    "roomNumber": 7
+    "roomNumber": 1
   },
   {
     "id": "5fwrgu4i7k55hl6t8",
@@ -96,6 +96,36 @@ const sampleBookings = [
     "date": "2022/02/05",
     "roomNumber": 12
   },
+  {
+    "id": "5fwrgu4i7k55hl6tn",
+    "userID": 15,
+    "date": "2022/01/17",
+    "roomNumber": 5
+  },
+  {
+    "id": "5f",
+    "userID": 15,
+    "date": "2022/01/17",
+    "roomNumber": 4
+  },
+  {
+    "id": "5fw",
+    "userID": 15,
+    "date": "2022/01/17",
+    "roomNumber": 3
+  },
+  {
+    "id": "5fwr",
+    "userID": 15,
+    "date": "2022/01/17",
+    "roomNumber": 2
+  },
+  {
+    "id": "5fwrg",
+    "userID": 15,
+    "date": "2022/01/17",
+    "roomNumber": 1
+  }
 ]
 
 export {

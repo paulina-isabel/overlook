@@ -1,25 +1,60 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>O V E R L O O K</title>
-</head>
-<body>
-  <h1>Overlook Hotel</h1>
-  <section class="customer-bookings">      
-    <img class="bookings-icons" id="key" src="./images/key.png" alt="key">    
-    <h2>All Bookings</title>
-    <div class="bookings">
-        Book a room to see your booking here!
-        <!-- bookings go here -->
+
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O V E R L O O K</title>
+  </head>
+
+  <body>
+    <h1>The Overlook Hotel</h1>
+
+    <h2 class="user-welcome-message">
+      <!-- Welcome message goes here -->
+    </h2>
+
+    <section class="customer-bookings">      
+      <img class="bookings-icons" id="key" src="./images/key.png" alt="key">    
+      <h2>All Your Bookings:</title>
+      <div class="bookings">
+          Book a room to see your booking here!
+          <!-- User bookings go here -->
+      </div>
+
+    </section>
+    <div class="total-spent">
+      <!-- User total spend goes here -->
     </div>
-</section>
-  <!-- <img src="./images/hotel-room.png" alt=""> -->
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-</body>
+    <aside class="date-picker-aside" id="date-picker">
+      <h2 class="make-booking-title">Make a new booking</h2>
+      <form class="date-picker">
+        <label for="date" class="desired-date-title">Select your desired date to see available rooms:</label><br>
+        <input type="text" id="date" name="date" placeholder="Click to select"><br>
+      </form>
+      <div class="showing-all hidden">
+        <!-- "Showing All Available Rooms on x date" message goes here-->
+      </div>
+      <div class="dropdown-filter hidden">
+        <!-- Filter By Room Type message goes here -->
+        <section class="filter-buttons">
+          <!-- Room type buttons go here  -->
+        </section>
+      </div>
+      <div class="available-rooms">
+        <!-- Available rooms go here -->
+      </div>
+      <div class="booking-confirmed">
+        <!-- Confirmation message goes here  -->
+      </div>
+    </aside>
+
+    <!-- <img src="./images/hotel-room.png" alt=""> -->
+    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+    <script src="bundle.js"></script>
+  </body>
+
 </html>
