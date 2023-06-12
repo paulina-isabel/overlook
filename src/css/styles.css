@@ -36,9 +36,12 @@ h1 {
   margin: 8px;
 }
 
+
+
 .login-icons {
-  height: 50px;
-  width: 50px;
+  padding-top: 60px;
+  height: 30px;
+  width: 30px;
 }
 
 .bookings {

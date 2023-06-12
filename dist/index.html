@@ -13,20 +13,36 @@
   <body>
     <h1>The Overlook Hotel</h1>
 
+    <div class="login-page-message">
+      Hello!
+      <article>
+        Please log in to see your confirmed bookings and browse available rooms.
+      </article>
+    </div>
+
     <form class="login" action="action_page.php" method="post">
       <div class="image-container">
         <img src="./images/user.png" alt="axe" class="login-icons"><img src="./images/axe.png" alt="user" class="login-icons">
       </div>
     
       <div class="login-form-container">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
-    
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-    
-        <button type="submit">Login</button>
+        <div>
+          <label for="username"><b>Username</b></label>
+          <div>
+            <input type="text" placeholder="Enter Username" name="username" required>
+          </div>
+        </div>
+        <div>
+          <label for="password"><b>Password</b></label>
+          <div>
+            <input type="password" placeholder="Enter Password" name="password" required>
+          </div>
+        </div>
+        <div>
+          <button type="submit">Login</button>
+        </div>
       </div>
+      Call us at +1 970-577-4000 if you wish to create an account.
     </form>
 
     
@@ -47,7 +63,7 @@
     <div class="total-spent hidden">
       <!-- User total spend goes here -->
     </div>
-    <aside class="date-picker-aside" id="date-picker">
+    <aside class="date-picker-aside hidden" id="date-picker">
       <h2 class="make-booking-title">Make a new booking</h2>
       <form class="date-picker">
         <label for="date" class="desired-date-title">Select your desired date to see available rooms:</label><br>

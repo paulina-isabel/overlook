@@ -125,7 +125,7 @@ const showAvailableRooms = (dateString, bookingsData, roomsData) => {
 const populateAvailableRooms = (availableRoomsList) => {
     availableRoomsList.forEach((booking) => {
     availableRoomsContainer.innerHTML += `
-      <div class="single-available-room">
+      <div class="single-available-room" tabindex="0">
         Cost Per Night: $${booking.costPerNight}<br>
         Room Type: ${booking.roomType}<br> 
         Beds: ${booking.numBeds}<br>
