@@ -13,17 +13,17 @@
   <body>
     <h1>The Overlook Hotel</h1>
 
-    <form action="action_page.php" method="post">
-      <div class="imgcontainer">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    <form class="login" action="action_page.php" method="post">
+      <div class="image-container">
+        <img src="./images/user.png" alt="axe" class="login-icons"><img src="./images/axe.png" alt="user" class="login-icons">
       </div>
     
-      <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+      <div class="login-form-container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
     
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
     
         <button type="submit">Login</button>
       </div>
@@ -31,11 +31,11 @@
 
     
 
-    <h2 class="user-welcome-message">
+    <h2 class="user-welcome-message hidden">
       <!-- Welcome message goes here -->
     </h2>
 
-    <section class="customer-bookings">      
+    <section class="customer-bookings hidden">      
       <img class="bookings-icons" id="key" src="./images/key.png" alt="key">    
       <h2>All Your Bookings:</title>
       <div class="bookings">
@@ -44,7 +44,7 @@
       </div>
 
     </section>
-    <div class="total-spent">
+    <div class="total-spent hidden">
       <!-- User total spend goes here -->
     </div>
     <aside class="date-picker-aside" id="date-picker">

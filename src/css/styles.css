@@ -36,6 +36,11 @@ h1 {
   margin: 8px;
 }
 
+.login-icons {
+  height: 50px;
+  width: 50px;
+}
+
 .bookings {
   /* text-align: center; */
   position: absolute;

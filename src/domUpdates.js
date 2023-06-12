@@ -18,6 +18,12 @@ const welcomeMessage = document.querySelector('.user-welcome-message');
 const showingAllMessage = document.querySelector('.showing-all')
 const bookingConfirmedMessage = document.querySelector('.booking-confirmed')
 
+// hide/unhide:
+// user-welcome-message
+// customer-bookings
+// total-spent
+// date-picker-aside
+
 let roomsData;
 let customersData;
 let bookingsData;
