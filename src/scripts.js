@@ -10,7 +10,7 @@ let chosenRoomData;
 let customerId;
 const loginForm = document.querySelector('.login');
 const loginButton = document.querySelector('.submit-button');
-const loginErrorMsg = document.querySelector('#login-error-msg');
+const loginErrorMsg = document.querySelector('.login-error-msg-holder');
 
 loginButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ loginButton.addEventListener("click", (e) => {
       start();
       renderCustomerPage();
     } else {
-      loginErrorMsg.style.opacity = 1;
+      loginErrorMsg.classList.remove('hidden');
     }
 })
 
@@ -60,7 +60,8 @@ availableRoomsContainer.addEventListener('click', (e) => {
 })
 
 export {
-  customerId
+  customerId,
+  loginForm
 }
 
 // An example of how you tell webpack to use a CSS (SCSS) file

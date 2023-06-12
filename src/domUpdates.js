@@ -4,7 +4,7 @@
 
 import { getData, getAllData } from '../apiCalls';
 import { getAvailableRooms, getCustomerBookings, getCustomer } from './customers';
-import { customerId } from './scripts';
+import { customerId, loginForm } from './scripts';
 import flatpickr from 'flatpickr';
 
 const filterButtons = document.querySelector('.filter-buttons')
@@ -51,6 +51,7 @@ const renderCustomerPage = () => {
   customerBookings.classList.remove('hidden');
   totalSpentContainer.classList.remove('hidden');
   datePickerAside.classList.remove('hidden');
+  loginForm.classList.add('hidden');
 }
 
 const start = () => {
@@ -72,13 +73,6 @@ const start = () => {
     });
   });
 }
-
-// const getRandomUser = () => {
-//   let randomUserIndex = Math.floor(Math.random() * customersData.length)
-//   currentCustomer = customersData[randomUserIndex]
-//   console.log('current cust', currentCustomer.id)
-// }
-
 
 const showWelcomeMessage = () => {  
   console.log('customer id in domups', typeof customerId)
