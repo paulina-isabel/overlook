@@ -34,6 +34,10 @@ let totalSpent;
 // =====================================================================
 
 window.addEventListener('load', () => {
+  start();
+});
+
+const start = () => {
   setData();
   getData('bookings').then(result => {
     showCustomerBookings();
@@ -51,7 +55,7 @@ window.addEventListener('load', () => {
       }
     });
   });
-});
+}
 
 const getRandomUser = () => {
   let randomUserIndex = Math.floor(Math.random() * customersData.length)
