@@ -79,24 +79,20 @@ const showCustomerBookings = () => {
       <div class="single-booking" tabindex="0">Date: ${booking.date} <br> Room: ${booking.roomNumber}
       </div>`
   });
-  let totalSpent2 = getTotalSpent();
-  totalSpentContainer.innerHTML = `Your total amount spent is: $${totalSpent2}`;
+  totalSpent = getTotalSpent(currentCustomerBookings);
+  totalSpentContainer.innerHTML = `Your total amount spent is: $${totalSpent.toFixed(2)}`;
 };
 
-const getTotalSpent = () => {
-  let roomsBookedNumbers = [];
-  totalSpent = 0;
-  currentCustomerBookings.forEach((booking) => {
-    roomsBookedNumbers.push(booking.roomNumber)
-  });
-  roomsData.forEach((room) => {
-
-    if (roomsBookedNumbers.includes(room.number)) {
-      totalSpent += room.costPerNight
-    };
-
-  });
-  return totalSpent.toFixed(2);
+const getTotalSpent = (currentCustomerBookings) => {
+  return currentCustomerBookings.reduce((acc, booking) => {
+    roomsData.forEach((room) => {
+      if (room.number === booking.roomNumber) {
+        acc += room.costPerNight
+      }
+    })
+    console.log(acc)
+    return acc
+  }, 0)
 }
 
 const showAvailableRooms = (dateString, bookingsData, roomsData) => {
