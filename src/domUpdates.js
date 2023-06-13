@@ -147,7 +147,6 @@ const populateFilterButton = (roomsData) => {
   filterButtonsMessage.innerHTML += 
     `Filter By Available Room Type: <br>` 
   roomTypes.forEach(type => {
-    console.log(type)
     filterButtons.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
   });  
   filterButtons.innerHTML += 
