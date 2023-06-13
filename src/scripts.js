@@ -19,7 +19,7 @@ loginButton.addEventListener("click", (e) => {
     let customerUsername = username.split('customer');
     customerId = parseInt(customerUsername[1]);
 
-    if (password === "overlook2021" && customerId < 51 && username.length < 11 && customerId > 0) { 
+    if (password === "overlook2021" && customerId < 51 && username.charAt(0) === 'c' && customerId > 0) { 
       start();
       renderCustomerPage();
     } else {
@@ -36,6 +36,7 @@ filterButtons.addEventListener('click', (e) => {
     showAvailableRooms(userSelectedDate, bookingsData, rooms);
     
     populateFilterButton(roomsData);
+    
   }
 })
 

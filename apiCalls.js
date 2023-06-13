@@ -20,13 +20,9 @@ const postData = (data) => {
       json => {
       bookingsData.push(json.newBooking),
       setData(),
-      showCustomerBookings(), 
-
-      console.log(bookingsData, 'bookings inside api calls'),
-      console.log('cust bookings in api calls', currentCustomerBookings)
+      showCustomerBookings()
       }
     )
-    // call show bookings function
     .then(resolve => setData())
     .catch(err => console.log("ERROR", err));
 };
@@ -42,10 +38,3 @@ export {
   showCustomerBookings,
   bookingsData
 };
-
-
-// get all customers, get all rooms, get all bookings 
-// customers
-// rooms 
-// bookings 
-
