@@ -1,12 +1,31 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 import './css/styles.css';
 import './domUpdates'
 import { filterRoomByType } from './customers';
-import { filterButtons, availableRoomsContainer, roomsData, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, populateFilterButton, confirmBooking } from './domUpdates';
+import { filterButtons, availableRoomsContainer, roomsData, showAvailableRooms, userSelectedDate, bookingsData, currentCustomer, populateFilterButton, confirmBooking, renderCustomerPage, start } from './domUpdates';
 import { postData } from '../apiCalls';
 
 let chosenRoomData;
+let customerId;
+
+const loginForm = document.querySelector('.login');
+const loginButton = document.querySelector('.submit-button');
+const loginErrorMsg = document.querySelector('.login-error-msg-holder');
+
+loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    let password = loginForm.password.value;
+    let username = loginForm.username.value;   
+    let customerUsername = username.split('customer');
+    customerId = parseInt(customerUsername[1]);
+
+    if (password === "overlook2021" && customerId < 51 && username.length < 11 && customerId > 0) { 
+      start();
+      renderCustomerPage();
+    } else {
+      loginErrorMsg.classList.remove('hidden');
+    }
+})
 
 filterButtons.addEventListener('click', (e) => {
   const desiredRoomType = e.target.classList.value;
@@ -36,6 +55,11 @@ availableRoomsContainer.addEventListener('click', (e) => {
     
   }
 })
+
+export {
+  customerId,
+  loginForm
+}
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 

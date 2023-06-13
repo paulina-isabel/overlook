@@ -1,5 +1,3 @@
-// show user's bookings
-
 // get user by id
 const getCustomer = (data, id) => {
   if(!data) {
@@ -28,14 +26,14 @@ const getBookings = (data, bookingId) => {
   const bookings = data.find((booking) => {
     if (booking.id === bookingId)
       return booking
-  })
+  });
 
   if(!bookings) {
     return 'Cannot find booking'
   };
 
-  return bookings
-}
+  return bookings;
+};
 
 // get all current & past bookings
 const getCustomerBookings = (bookingsData, customerId) => {
@@ -46,46 +44,40 @@ const getCustomerBookings = (bookingsData, customerId) => {
 
   let myBookings = bookingsData.filter((booking) => {
     return booking.userID === customerId
-  })
+  });
 
   if(!myBookings.length) {
     return 'No bookings found for you'
   };
 
-  return myBookings
-}
+  return myBookings;
+};
 
+// get available rooms
 const getAvailableRooms = (date, bookingsData, roomsData) => {
   let unavailableRooms = bookingsData.reduce((unavailRooms, booking) => { if (booking.date === date) {
     unavailRooms.push(booking.roomNumber)
   }
     return unavailRooms
-  }, [])
-
+  }, []);
   let availableRooms = roomsData.filter((room) => {
     return !unavailableRooms.includes(room.number) 
-  })
+  });
+ return availableRooms;
+};
 
-  // if(!availableRooms.length) {
-  //   return 'No rooms are available on the selected date, please pick another date.'
-  // }
-
- return availableRooms
-}
-
+// filter room by room type
 const filterRoomByType = (roomz, type) => {
   let filteredRooms = roomz.filter((room) => {
     return room.roomType === type
-  })
-  
-  // console.log(roomz)
+  });
 
   if (!filteredRooms.length) {
     return `Sorry, there are no available rooms in the ${type} category :(`
-  }
+  };
 
-  return filteredRooms
-}
+  return filteredRooms;
+};
 
 export {
   getCustomer,
@@ -93,4 +85,4 @@ export {
   getCustomerBookings,
   getAvailableRooms,
   filterRoomByType
-}
+};

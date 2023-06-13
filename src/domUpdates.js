@@ -3,7 +3,8 @@
 // =====================================================================
 
 import { getData, getAllData } from '../apiCalls';
-import { getAvailableRooms, getCustomerBookings } from './customers';
+import { getAvailableRooms, getCustomerBookings, getCustomer } from './customers';
+import { customerId, loginForm } from './scripts';
 import flatpickr from 'flatpickr';
 
 const filterButtons = document.querySelector('.filter-buttons')
@@ -17,6 +18,10 @@ const bookRoomButton = document.querySelectorAll('.book-room-button');
 const welcomeMessage = document.querySelector('.user-welcome-message');
 const showingAllMessage = document.querySelector('.showing-all')
 const bookingConfirmedMessage = document.querySelector('.booking-confirmed')
+const customerBookings = document.querySelector('.customer-bookings');
+const datePickerAside = document.querySelector('.date-picker-aside');
+const loginPage = document.querySelector('.login-page')
+
 
 let roomsData;
 let customersData;
@@ -33,7 +38,15 @@ let totalSpent;
 // ============================  FUNCTIONS  ============================
 // =====================================================================
 
-window.addEventListener('load', () => {
+const renderCustomerPage = () => {
+  welcomeMessage.classList.remove('hidden');
+  customerBookings.classList.remove('hidden');
+  totalSpentContainer.classList.remove('hidden');
+  datePickerAside.classList.remove('hidden');
+  loginPage.classList.add('hidden');
+}
+
+const start = () => {
   setData();
   getData('bookings').then(result => {
     showCustomerBookings();
@@ -51,16 +64,10 @@ window.addEventListener('load', () => {
       }
     });
   });
-});
-
-const getRandomUser = () => {
-  let randomUserIndex = Math.floor(Math.random() * customersData.length)
-  currentCustomer = customersData[randomUserIndex]
-  console.log('current cust', currentCustomer.id)
 }
 
-const showWelcomeMessage = () => {
-  getRandomUser()
+const showWelcomeMessage = () => {  
+  currentCustomer = getCustomer(customersData, customerId)
   welcomeMessage.innerText = `Welcome, ${currentCustomer.name}`
 }
 
@@ -71,7 +78,7 @@ const showCustomerBookings = () => {
   currentCustomerBookings = getCustomerBookings(bookingsData, currentCustomer.id);
   currentCustomerBookings.forEach((booking) => {
     bookingsContainer.innerHTML += `
-      <div class="single-booking">Date: ${booking.date} <br> Room: ${booking.roomNumber}
+      <div class="single-booking" tabindex="0">Date: ${booking.date} <br> Room: ${booking.roomNumber}
       </div>`
   });
   let totalSpent2 = getTotalSpent();
@@ -120,7 +127,7 @@ const populateAvailableRooms = (availableRoomsList) => {
         Room Type: ${booking.roomType}<br> 
         Beds: ${booking.numBeds}<br>
         Bed Size: ${booking.bedSize}<br>
-        Bidet: ${booking.bidet}<br>
+        Bidet: ${booking.bidet ? "yes" : "no"}<br>
         Room Number: ${booking.number}<br>
         <button class="book-room-button" id="${booking.number}">Book This Room</button>
       </div>`
@@ -136,7 +143,7 @@ const populateFilterButton = (roomsData) => {
     };
   });    
   dropDownSect.innerHTML += 
-    `Filter By Room Type: <br>` 
+    `Filter By Available Room Type: <br>` 
   roomTypes.forEach(type => {
     dropDownSect.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
   });  
@@ -170,6 +177,8 @@ export {
   populateFilterButton,
   populateAvailableRooms,
   confirmBooking,
+  renderCustomerPage,
+  start,
   filterButtons,
   roomsData,
   availableRoomsList,
