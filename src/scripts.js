@@ -13,12 +13,10 @@ const loginErrorMsg = document.querySelector('.login-error-msg-holder');
 
 loginButton.addEventListener("click", (e) => {
     e.preventDefault();
-    
     let password = loginForm.password.value;
     let username = loginForm.username.value;   
     let customerUsername = username.split('customer');
     customerId = parseInt(customerUsername[1]);
-
     if (password === "overlook2021" && customerId < 51 && username.charAt(0) === 'c' && customerId > 0) { 
       start();
       renderCustomerPage();

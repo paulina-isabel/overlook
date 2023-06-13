@@ -158,6 +158,7 @@ const populateFilterButton = (roomsData) => {
 
 const confirmBooking = (chosenRoomDate, chosenRoomNumber) => {
   filterButtonsMessage.classList.add('hidden');
+  filterButtons.classList.add('hidden');
   showingAllMessage.classList.add('hidden');
   availableRoomsContainer.classList.add('hidden');
   bookingConfirmedMessage.classList.remove('hidden');
