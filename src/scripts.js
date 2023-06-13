@@ -32,11 +32,9 @@ filterButtons.addEventListener('click', (e) => {
   if (desiredRoomType === 'all-rooms') {
     showAvailableRooms(userSelectedDate, bookingsData, roomsData);
   } else {
-    let rooms = filterRoomByType(roomsData, desiredRoomType);
-    showAvailableRooms(userSelectedDate, bookingsData, rooms);
-    
+    let roomsByType = filterRoomByType(roomsData, desiredRoomType);
+    showAvailableRooms(userSelectedDate, bookingsData, roomsByType);
     populateFilterButton(roomsData);
-    
   }
 })
 
