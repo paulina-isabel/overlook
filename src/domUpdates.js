@@ -90,7 +90,6 @@ const getTotalSpent = (currentCustomerBookings) => {
         acc += room.costPerNight
       }
     })
-    console.log(acc)
     return acc
   }, 0)
 }
