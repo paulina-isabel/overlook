@@ -1,3 +1,7 @@
+// =====================================================================
+// ======================  IMPORTS AND VARIABLES  ======================
+// =====================================================================
+
 import './css/styles.css';
 import './domUpdates'
 import { filterRoomByType } from './customers';
@@ -10,6 +14,10 @@ let customerId;
 const loginForm = document.querySelector('.login');
 const loginButton = document.querySelector('.submit-button');
 const loginErrorMsg = document.querySelector('.login-error-msg-holder');
+
+// =====================================================================
+// =========================  EVENT LISTENERS  =========================
+// =====================================================================
 
 loginButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -49,7 +57,6 @@ availableRoomsContainer.addEventListener('click', (e) => {
     .then(() => {
       confirmBooking(chosenRoomDate, chosenRoomNumber)
     })
-    
   }
 })
 
@@ -57,8 +64,3 @@ export {
   customerId,
   loginForm
 }
-
-// An example of how you tell webpack to use a CSS (SCSS) file
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/hotel-room.png'

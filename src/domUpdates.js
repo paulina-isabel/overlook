@@ -4,7 +4,7 @@
 
 import { getData, getAllData } from '../apiCalls';
 import { getAvailableRooms, getCustomerBookings, getCustomer } from './customers';
-import { customerId, loginForm } from './scripts';
+import { customerId } from './scripts';
 import flatpickr from 'flatpickr';
 
 const filterButtons = document.querySelector('.filter-buttons')
@@ -12,7 +12,6 @@ const bookingsContainer = document.querySelector('.bookings');
 const totalSpentContainer = document.querySelector('.total-spent')
 const availableRoomsContainer = document.querySelector('.available-rooms');
 const filterButtonsMessage = document.querySelector('.filter-message');
-// const filterButtons = document.querySelector('.filter-buttons');
 const suiteButton = document.querySelector('.suite');
 const bookRoomButton = document.querySelectorAll('.book-room-button');
 const welcomeMessage = document.querySelector('.user-welcome-message');
@@ -53,7 +52,7 @@ const start = () => {
     flatpickr('#date', {
       dateFormat: 'Y/m/d',
       minDate: 'today',
-      // maxDate: "2033/01/01",
+      maxDate: "2033/01/01",
       allowInput: true,
       mode: 'single',
       onChange: (selectedDate, dateString) => {
@@ -61,7 +60,6 @@ const start = () => {
         availableRoomsContainer.classList.remove('hidden');
         bookingConfirmedMessage.classList.add('hidden');
         showAvailableRooms(dateString, bookingsData, roomsData);
-        filterButtons.classList.remove('hidden');
       }
     });
   });
@@ -75,7 +73,6 @@ const showWelcomeMessage = () => {
 const showCustomerBookings = () => {
   showWelcomeMessage()
   bookingsContainer.innerHTML = '';
-   // upon login, capture customer id to pass in as argument in getCustomerBookings below:
   currentCustomerBookings = getCustomerBookings(bookingsData, currentCustomer.id);
   currentCustomerBookings.forEach((booking) => {
     bookingsContainer.innerHTML += `
@@ -108,6 +105,7 @@ const showAvailableRooms = (dateString, bookingsData, roomsData) => {
 
   if (!availableRoomsList.length) {
     filterButtonsMessage.classList.add('hidden');
+    filterButtons.classList.add('hidden');
     showingAllMessage.classList.add('hidden');
     availableRoomsContainer.innerHTML = `No availability. Please modify your search!`
   } else {
