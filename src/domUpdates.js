@@ -4,15 +4,14 @@
 
 import { getData, getAllData } from '../apiCalls';
 import { getAvailableRooms, getCustomerBookings, getCustomer } from './customers';
-import { customerId, loginForm } from './scripts';
+import { customerId } from './scripts';
 import flatpickr from 'flatpickr';
 
 const filterButtons = document.querySelector('.filter-buttons')
 const bookingsContainer = document.querySelector('.bookings');
 const totalSpentContainer = document.querySelector('.total-spent')
 const availableRoomsContainer = document.querySelector('.available-rooms');
-const dropdownSection = document.querySelector('.dropdown-filter');
-const dropDownSect = document.querySelector('.filter-buttons');
+const filterButtonsMessage = document.querySelector('.filter-message');
 const suiteButton = document.querySelector('.suite');
 const bookRoomButton = document.querySelectorAll('.book-room-button');
 const welcomeMessage = document.querySelector('.user-welcome-message');
@@ -53,7 +52,7 @@ const start = () => {
     flatpickr('#date', {
       dateFormat: 'Y/m/d',
       minDate: 'today',
-      // maxDate: "2033/01/01",
+      maxDate: "2033/01/01",
       allowInput: true,
       mode: 'single',
       onChange: (selectedDate, dateString) => {
@@ -74,7 +73,6 @@ const showWelcomeMessage = () => {
 const showCustomerBookings = () => {
   showWelcomeMessage()
   bookingsContainer.innerHTML = '';
-   // upon login, capture customer id to pass in as argument in getCustomerBookings below:
   currentCustomerBookings = getCustomerBookings(bookingsData, currentCustomer.id);
   currentCustomerBookings.forEach((booking) => {
     bookingsContainer.innerHTML += `
@@ -106,15 +104,17 @@ const showAvailableRooms = (dateString, bookingsData, roomsData) => {
   availableRoomsList = getAvailableRooms(dateString, bookingsData, roomsData);
 
   if (!availableRoomsList.length) {
-    dropdownSection.classList.add('hidden');
+    filterButtonsMessage.classList.add('hidden');
+    filterButtons.classList.add('hidden');
     showingAllMessage.classList.add('hidden');
     availableRoomsContainer.innerHTML = `No availability. Please modify your search!`
   } else {
     populateAvailableRooms(availableRoomsList);
-    dropdownSection.classList.remove('hidden');
+    filterButtonsMessage.classList.remove('hidden');
+    filterButtons.classList.remove('hidden');
     showingAllMessage.classList.remove('hidden');
     showingAllMessage.innerText = `Showing available rooms on ${userSelectedDate}`
-    populateFilterButton(roomsData, dropDownSect);
+    populateFilterButton(roomsData, filterButtons);
   };
 
 };
@@ -135,24 +135,28 @@ const populateAvailableRooms = (availableRoomsList) => {
 };
 
 const populateFilterButton = (roomsData) => {
-  dropDownSect.innerHTML = '';
+  filterButtons.classList.remove('hidden');
+  filterButtonsMessage.innerHTML = '';
+  filterButtons.innerHTML = '';
   roomTypes = [];
   roomsData.forEach((room) => {
     if (!roomTypes.includes(room.roomType)) {
       roomTypes.push(room.roomType)
     };
   });    
-  dropDownSect.innerHTML += 
+  filterButtonsMessage.innerHTML += 
     `Filter By Available Room Type: <br>` 
   roomTypes.forEach(type => {
-    dropDownSect.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
+    console.log(type)
+    filterButtons.innerHTML += `<button class="${type}" aria-label="filter for ${type}">${type}</button>`;
   });  
-  dropDownSect.innerHTML += 
+  filterButtons.innerHTML += 
     `<button class="all-rooms" aria-label="filter for all rooms">all types</button>`;
 };
 
 const confirmBooking = (chosenRoomDate, chosenRoomNumber) => {
-  dropdownSection.classList.add('hidden');
+  filterButtonsMessage.classList.add('hidden');
+  filterButtons.classList.add('hidden');
   showingAllMessage.classList.add('hidden');
   availableRoomsContainer.classList.add('hidden');
   bookingConfirmedMessage.classList.remove('hidden');
