@@ -20,6 +20,8 @@ const showingAllMessage = document.querySelector('.showing-all')
 const bookingConfirmedMessage = document.querySelector('.booking-confirmed')
 const customerBookings = document.querySelector('.customer-bookings');
 const datePickerAside = document.querySelector('.date-picker-aside');
+const loginPage = document.querySelector('.login-page')
+
 
 let roomsData;
 let customersData;
@@ -36,22 +38,12 @@ let totalSpent;
 // ============================  FUNCTIONS  ============================
 // =====================================================================
 
-// window.addEventListener('load', () => {
-//   start();
-// });
-
-
-// hide/unhide:
-// user-welcome-message
-// customer-bookings
-// total-spent
-// date-picker-aside
 const renderCustomerPage = () => {
   welcomeMessage.classList.remove('hidden');
   customerBookings.classList.remove('hidden');
   totalSpentContainer.classList.remove('hidden');
   datePickerAside.classList.remove('hidden');
-  loginForm.classList.add('hidden');
+  loginPage.classList.add('hidden');
 }
 
 const start = () => {
@@ -75,9 +67,7 @@ const start = () => {
 }
 
 const showWelcomeMessage = () => {  
-  console.log('customer id in domups', typeof customerId)
   currentCustomer = getCustomer(customersData, customerId)
-  console.log('current customer', currentCustomer)
   welcomeMessage.innerText = `Welcome, ${currentCustomer.name}`
 }
 
@@ -137,7 +127,7 @@ const populateAvailableRooms = (availableRoomsList) => {
         Room Type: ${booking.roomType}<br> 
         Beds: ${booking.numBeds}<br>
         Bed Size: ${booking.bedSize}<br>
-        Bidet: ${booking.bidet}<br>
+        Bidet: ${booking.bidet ? "yes" : "no"}<br>
         Room Number: ${booking.number}<br>
         <button class="book-room-button" id="${booking.number}">Book This Room</button>
       </div>`

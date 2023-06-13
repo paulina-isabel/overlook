@@ -1,5 +1,3 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 import './css/styles.css';
 import './domUpdates'
 import { filterRoomByType } from './customers';
@@ -8,6 +6,7 @@ import { postData } from '../apiCalls';
 
 let chosenRoomData;
 let customerId;
+
 const loginForm = document.querySelector('.login');
 const loginButton = document.querySelector('.submit-button');
 const loginErrorMsg = document.querySelector('.login-error-msg-holder');

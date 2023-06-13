@@ -12,50 +12,43 @@
 
   <body>
     <h1>The Overlook Hotel</h1>
-
-    <article class="login-page-message">
-      Hello!
-      <div>
-        Please log in to see your confirmed bookings and browse available rooms.
-      </div>
-    </article>
-
-    <form class="login">
-      <div class="image-container">
-        <img src="./images/user.png" alt="axe" class="login-icons"><img src="./images/axe.png" alt="user" class="login-icons">
-      </div>
-    
-      <div class="login-error-msg-holder hidden">
-        <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
-      </div>
-
-      <div class="login-form-container">
+    <section class="login-page">
+      <article class="login-page-message">
+        Come play with us.
         <div>
-          <label for="username"><b>Username</b></label>
-          <div>
-            <input type="text" id="username-field" placeholder="Enter Username" name="username" required>
-          </div>
+          Please log in to see your confirmed bookings and browse available rooms.
         </div>
-        <div>
-          <label for="password"><b>Password</b></label>
-          <div>
-            <input type="password" id="password-field" placeholder="Enter Password" name="password" required>
-          </div>
-        </div>
-        <div>
-          <button class="submit-button" type="submit">Login</button>
-        </div>
-      </div>
-      
-    </form>
-    <article class="phone-number-message">
-      Call us at +1 970-577-4000 if you wish to create an account.
-    </article>
-   
+      </article>
 
-    <h2 class="user-welcome-message hidden">
+      <form class="login">
+        <div class="image-container">
+          <img src="./images/user.png" alt="axe" class="login-icons">
+          <img src="./images/axe.png" alt="user" class="login-icons">
+        </div>
+
+        <div class="login-form-container">
+            Username
+            <div>
+              <input type="text" id="username-field" placeholder="Enter Username" name="username" aria-label="username" required>
+            </div>
+            Password
+            <div>
+              <input type="password" id="password-field" placeholder="Enter Password" name="password" aria-label="password" required>
+            </div>
+            <button class="submit-button" type="submit">Login</button>
+        </div>
+        <div class="login-error-msg-holder hidden">
+          <i>Invalid username and/or password</i>
+        </div>
+      </form>
+      <article class="phone-number-message">
+        Call us at +1 970-577-4000 if you wish to create an account.
+      </article>
+    </section>
+
+    <div class="user-welcome-message hidden">
       <!-- Welcome message goes here -->
-    </h2>
+    </div>
 
     <section class="customer-bookings hidden">      
       <img class="bookings-icons" id="key" src="./images/key.png" alt="key">    
@@ -73,7 +66,7 @@
       <h2 class="make-booking-title">Make a new booking</h2>
       <form class="date-picker">
         <label for="date" class="desired-date-title">Select your desired date to see available rooms:</label><br>
-        <input type="text" id="date" name="date" placeholder="Click to select"><br>
+        <input type="text" id="date" name="date" placeholder="YYYY/MM/DD"><br>
       </form>
       <div class="showing-all hidden">
         <!-- "Showing All Available Rooms on x date" message goes here-->
@@ -92,8 +85,6 @@
       </div>
     </aside>
 
-    <!-- <img src="./images/hotel-room.png" alt=""> -->
-    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
 
