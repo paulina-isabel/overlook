@@ -39,7 +39,7 @@ const sampleRooms = [
     "numBeds": 2,
     "costPerNight": 340.17
   },
-]
+];
 
 const sampleCustomers = [
   {
@@ -62,7 +62,7 @@ const sampleCustomers = [
     "id": 5,
     "name": "Rhiannon Little"
   },
-]
+];
 
 
 const sampleBookings = [
@@ -126,10 +126,10 @@ const sampleBookings = [
     "date": "2022/01/17",
     "roomNumber": 1
   }
-]
+];
 
 export {
   sampleRooms,
   sampleCustomers,
   sampleBookings
-}
+};
